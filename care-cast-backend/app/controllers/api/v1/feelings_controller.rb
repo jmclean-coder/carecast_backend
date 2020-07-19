@@ -1,17 +1,10 @@
 class Api::V1::FeelingsController < ApplicationController
     def index 
-
-    end
-
-    def show
-
+        feelings = Feeling.all
+        render json: feelings
     end
 
     def create 
-
-    end
-
-    def update
 
     end
 
