@@ -6,9 +6,9 @@ class Api::V1::AuthController < ApplicationController
         #User#authenticate from bcrypt checking the pass against the salted
         if user && user.authenticate(user_login_params[:password])
             token = encode_token({ user_id: user.id })
-            render json: {UserSerializer.new(@user), jwt: token }, status: :accepted
+            render json: {user: UserSerializer.new(user), jwt: token }, status: :accepted
         else
-            render json: {message: 'Invalid login credentials.'}
+            render json: {message: 'Invalid login credentials.'}, status: :unauthorized
         end
     end
 
@@ -16,6 +16,6 @@ class Api::V1::AuthController < ApplicationController
  
     def user_login_params
       # params { user: {username: 'Chandler Bing', password: 'hi' } }
-      params.require(:user).permit(:username, :password)
+      params.require(:user).permit(:user_name, :password)
     end
 end
