@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
         render json: { user: UserSerializer.new(current_user)}, status: :accepted
     end
 
-    def create 
+    def create
         user = User.create(user_params)
         if user.valid?
             @token = encode_token(user_id: user.id)
@@ -16,7 +16,6 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def update
-
         current_user.update(user_params)
         if current_user.valid?
             render json: UserSerializer.new(current_user), status: :accepted

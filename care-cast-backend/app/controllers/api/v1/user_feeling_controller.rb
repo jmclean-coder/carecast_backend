@@ -1,4 +1,4 @@
-class Api::V1::UserRatingsController < ApplicationController
+class UserFeelingController < ApplicationController
     def index 
 
     end
@@ -22,6 +22,6 @@ class Api::V1::UserRatingsController < ApplicationController
     private
 
     def user_rating_params
-        params.require(:user_rating).permit(:rating, :category_id)
+        params.require(:user_feeling).permit(:feeling_id, :user_id)
     end
 end
