@@ -6,20 +6,20 @@ class Api::V1::AuthController < ApplicationController
         #User#authenticate from bcrypt checking the pass against the salted
         if user && user.authenticate(user_login_params[:password])
             token = encode_token(user)
-            render json: {id: user.id, username: user.user_name, jwt: token }, status: :accepted
+            render json: {id: user.id, fullname: user.full_name, username: user.user_name, jwt: token }, status: :accepted
         else
             render json: {message: 'Invalid login credentials.'}, status: :unauthorized
         end
     end
 
     def show
-      byebug
-        user = User.find(user_id)
+        user = User.find_by(user_name: user_login_params[:username])
         if user && logged_in?
             render json: {id: user.id, username: user.user_name}
         else
             render json: {error: "User could not be found"}, status: :unauthorized
         end
+        byebug
 
     end
 
