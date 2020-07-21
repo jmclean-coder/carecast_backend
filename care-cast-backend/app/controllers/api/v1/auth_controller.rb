@@ -12,6 +12,17 @@ class Api::V1::AuthController < ApplicationController
         end
     end
 
+    def show
+        byebug
+        user = User.find(user_id)
+        if user && logged_in?
+            render json: {id: user.id, username: user.user_name}
+        else
+            render json: {error: "User could not be found"}, status: :unauthorized
+        end
+
+    end
+
     private
  
     def user_login_params
