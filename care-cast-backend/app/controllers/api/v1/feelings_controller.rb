@@ -1,4 +1,5 @@
 class Api::V1::FeelingsController < ApplicationController
+    skip_before_action :authorized, only: [:index]
     def index 
         feelings = Feeling.all
         render json: feelings

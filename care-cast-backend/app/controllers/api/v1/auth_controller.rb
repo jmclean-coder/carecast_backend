@@ -5,7 +5,7 @@ class Api::V1::AuthController < ApplicationController
         user = User.find_by(user_name: user_login_params[:username])
         #User#authenticate from bcrypt checking the pass against the salted
         if user && user.authenticate(user_login_params[:password])
-            token = encode_token(user)
+            token = encode_token({user_id: user.id})
             render json: {id: user.id, fullname: user.full_name, username: user.user_name, jwt: token }, status: :accepted
         else
             render json: {message: 'Invalid login credentials.'}, status: :unauthorized
@@ -13,13 +13,13 @@ class Api::V1::AuthController < ApplicationController
     end
 
     def show
-        user = User.find_by(user_name: user_login_params[:username])
+        # byebug
+        user = User.find(current_user.id)
         if user && logged_in?
             render json: {id: user.id, username: user.user_name}
         else
             render json: {error: "User could not be found"}, status: :unauthorized
         end
-        byebug
 
     end
 

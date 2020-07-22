@@ -8,9 +8,8 @@ Rails.application.routes.draw do
       resources :feelings, except: [:show, :update]
       resources :user_feelings
       resources :users, except: [:index]
-      get '/current_user', to: 'auth#show'
+      get '/currentuser', to: 'auth#show'
       post '/login', to: 'auth#create'
-      get '/dashboard', to: 'users#dashboard'
 
     end
   end
