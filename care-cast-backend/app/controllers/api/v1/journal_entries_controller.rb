@@ -9,7 +9,7 @@ class Api::V1::JournalEntriesController < ApplicationController
     #     journal_entry = JournalEntry.find(params)
     # end
     
-    def create 
+    def create
         journal = JournalEntry.create(journal_entry_params)
         if journal.valid?
             render json: JournalEntrySerializer.new(journal), status: :created
