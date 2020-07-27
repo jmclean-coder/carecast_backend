@@ -19,10 +19,10 @@ class Api::V1::JournalEntriesController < ApplicationController
     end
 
     def update
-        journal = Journal.find(params[:id])
-        journal.update
-        if journal.valid?
-            render json: JournalEntrySerializer.new(journal), status: :accepted
+        journal_e = JournalEntry.find(params[:id])
+        journal_e.update(journal_entry_params)
+        if journal_e.valid?
+            render json: JournalEntrySerializer.new(journal_e), status: :accepted
         else
             render json: { error: 'Failed to update', messages: journal.errors.full_messages }, status: :not_acceptable
         end
