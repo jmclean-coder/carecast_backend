@@ -1,8 +1,7 @@
 class UserSerializer
   include FastJsonapi::ObjectSerializer
   attributes :full_name, :user_name, :user_ratings, :journal_entries, :list_items, :feelings, :user_ratings
-  # has_many :user_ratings
-  # has_many :journal_entries
-  # has_many :list_items
-  # has_many :feelings
+  attribute :todays_user_ratings do |user| 
+    UserRating.where(created_at: Date.today.all_day, updated_at: Date.today.all_day, user_id: user.id)
+  end
 end
