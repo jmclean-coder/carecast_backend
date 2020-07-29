@@ -24,7 +24,7 @@ class Api::V1::JournalEntriesController < ApplicationController
         if journal_e.valid?
             render json: JournalEntrySerializer.new(journal_e), status: :accepted
         else
-            render json: { error: 'Failed to update', messages: journal.errors.full_messages }, status: :not_acceptable
+            render json: { error: 'Failed to update', messages: journal_e.errors.full_messages }, status: :not_acceptable
         end
 
     end
@@ -41,3 +41,4 @@ class Api::V1::JournalEntriesController < ApplicationController
         params.require(:journal_entry).permit(:title, :content, :user_id)
     end
 end
+new Date("2020-07-28T02:32:20.451Z".replace(' ','T')+'Z')
