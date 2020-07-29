@@ -1,5 +1,4 @@
 class UserRatingSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :rating, :created_at, :updated_at, :categories
-  has_many :categories
+  attributes :id, :rating, :created_at, :updated_at, :user_id, :category_id
 end
