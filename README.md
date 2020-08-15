@@ -29,7 +29,7 @@ Currently, users of CareCast can:
 ---
 
 ## Front End Dependencies:
-Refer to the [carecast_client repository](https://github.com/jmclean-coder/MovieShelfFE)  for instructions to set up the frontend interface and ReactJS
+Refer to the README in the [carecast_frontend repository](https://github.com/jmclean-coder/carecast_frontend) for instructions to set up the frontend interface and ReactJS
 
 ## Dependencies:
 * Developed on Google Chrome (80.0.3987.149)
@@ -73,6 +73,10 @@ This repo requires hosting locally. To start hosting the local server, start by 
 The rails server is functioning solely as a backend API for local development, so you do not need to navigate to localhost:3000 in your browser unless you'd like to test to make sure the database is running correctly. It's recommended to run the backend on port 3000 first, then the frontend on a different port.
 
 ---
+
+<!-- ## Contribution: -->
+
+
 
 
 ## License
