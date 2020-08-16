@@ -3,26 +3,18 @@ class  Api::V1::UserFeelingsController < ApplicationController
         user_feelings = UserFeeling.all
     end
 
-    def show
-
-    end
-
     def create
+        #figure out what is happening here and with strong params
         feeling = Feeling.find_by(name: params["_json"])
-        user_feeling= UserFeeling.create(user_id: current_user.id, feeling_id: feeling.id)
-        if user_feeling.valid?
-            render json: feeling
+        user_feeling = current_user.feelings.create(feeling: feeling)
+        if user_feeling.persisted?
+            #No unhappy path neewded because input is highly controlled
+            render status: :ok
         end
 
     end
 
-    def update
-
-    end
-
-    def destroy
-
-    end
+    def destroy; end
 
     private
 
