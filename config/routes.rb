@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       resources :list_items, except: [:show]
       resources :journal_entries, except: [:show]
       resources :user_ratings
-      resources :categories
+      resources :categories, only: [:index]
       resources :feelings, except: [:show, :update]
       resources :user_feelings
       resources :users, except: [:index]
