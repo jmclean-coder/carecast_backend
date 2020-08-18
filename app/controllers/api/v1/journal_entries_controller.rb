@@ -11,7 +11,7 @@ class Api::V1::JournalEntriesController < ApplicationController
     
     def create
         journal = JournalEntry.create(journal_entry_params)
-        if journal.valid?
+        if journal.persisted?
             render json: JournalEntrySerializer.new(journal), status: :created
         else
             render json: { error: 'Failed to create', messages: journal.errors.full_messages }, status: :not_acceptable
@@ -21,7 +21,7 @@ class Api::V1::JournalEntriesController < ApplicationController
     def update
         journal_e = JournalEntry.find(params[:id])
         journal_e.update(journal_entry_params)
-        if journal_e.valid?
+        if journal_e.persisted?
             render json: JournalEntrySerializer.new(journal_e), status: :accepted
         else
             render json: { error: 'Failed to update', messages: journal_e.errors.full_messages }, status: :not_acceptable
@@ -41,4 +41,3 @@ class Api::V1::JournalEntriesController < ApplicationController
         params.require(:journal_entry).permit(:title, :content, :user_id)
     end
 end
-new Date("2020-07-28T02:32:20.451Z".replace(' ','T')+'Z')
