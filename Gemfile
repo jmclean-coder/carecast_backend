@@ -46,3 +46,5 @@ gem 'jsonapi-serializer'
 
 gem "faker", "~> 2.13"
 gem "figaro", "~> 1.2"
+gem "rspec"
+gem ""
