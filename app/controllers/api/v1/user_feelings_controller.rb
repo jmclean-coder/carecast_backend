@@ -4,12 +4,11 @@ class  Api::V1::UserFeelingsController < ApplicationController
     end
 
     def create
-        #figure out what is happening here and with strong params
-        feeling = Feeling.find_by(name: params["_json"])
-        user_feeling = current_user.feelings.create(feeling: feeling)
-        if user_feeling.persisted?
+        feeling = Feeling.find_by(name: user_feeling_params["feeling"])
+        new_feeling = current_user.feelings.create(name: feeling.name, main_word: feeling.main_word, need_condition: feeling.need_condition)
+        if new_feeling.persisted?
             #No unhappy path neewded because input is highly controlled
-            render status: :ok
+            render json: FeelingSerializer.new(new_feeling), status: :created
         end
 
     end
@@ -18,7 +17,9 @@ class  Api::V1::UserFeelingsController < ApplicationController
 
     private
 
-    # def user_feeling_params
-    #     params.require(:user_feeling).permit(:feeling)
-    # end
+    def user_feeling_params
+        params.require(:user_feeling).permit(:feeling)
+    end
+
+ 
 end
