@@ -32,7 +32,7 @@ class ApplicationController < ActionController::API
       end
 
       def logged_in?
-        # byebug
+        byebug
       !!current_user
       end
 
