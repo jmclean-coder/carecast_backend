@@ -33,7 +33,6 @@ class ApplicationController < ActionController::API
 
       def logged_in?
         puts current_user
-        # byebug
       !!current_user
       end
 
