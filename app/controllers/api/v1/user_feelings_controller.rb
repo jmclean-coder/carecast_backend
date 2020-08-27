@@ -1,4 +1,6 @@
 class  Api::V1::UserFeelingsController < ApplicationController
+    skip_before_action :authorized, only: [:create, :show, :update, :destroy]
+
     def index 
         user_feelings = UserFeeling.all
     end

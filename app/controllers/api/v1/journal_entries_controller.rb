@@ -1,5 +1,5 @@
 class Api::V1::JournalEntriesController < ApplicationController
-    
+    skip_before_action :authorized, only: [:create, :show, :update, :destroy]
     def index
         journal_entries = JournalEntry.where(user_id: current_user.id)
         render json: journal_entries
