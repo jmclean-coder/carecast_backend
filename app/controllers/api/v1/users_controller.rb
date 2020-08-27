@@ -2,7 +2,8 @@ class Api::V1::UsersController < ApplicationController
     skip_before_action :authorized, only: [:show, :create, :update, :destroy]
     
     def show
-        render json: UserSerializer.new(current_user, {params: {current_user: current_user}}), status: :accepted
+        puts params 
+        render json: UserSerializer.new(current_user, {params: {current_user: current_user}}), status: :ok
     end
 
     def create
