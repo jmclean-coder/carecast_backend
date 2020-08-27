@@ -1,4 +1,4 @@
-if Rails.env.production?
+if Rails.env.production? and ENV['BYEBUG_SERVER_PORT']
     require 'byebug/core'
-  Byebug.start_server 'localhost', ENV.fetch("BYEBUG_SERVER_PORT", 1048).to_i
+  Byebug.start_server 'localhost', ENV['BYEBUG_SERVER_PORT'].to_i
 end
