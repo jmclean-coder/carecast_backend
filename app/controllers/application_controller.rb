@@ -12,6 +12,7 @@ class ApplicationController < ActionController::API
       def decoded_token
         if auth_header
           token = auth_header.split(' ')[1] #[Bearer, <token>]
+          puts token
           begin
             JWT.decode(token, SECRET, true, algorithm: 'HS256')
             # JWT.decode => [{ "user_id"=>"2" }, { "alg"=>"HS256" }]
@@ -22,7 +23,7 @@ class ApplicationController < ActionController::API
       end
     
       def current_user
-        if decoded_token()
+        if decoded_token
           user_id = decoded_token[0]['user_id'] #[{ "user_id"=>"2" }, { "alg"=>"HS256" }]
           user = User.find(user_id)
         else
@@ -31,6 +32,7 @@ class ApplicationController < ActionController::API
       end
 
       def logged_in?
+        puts current_user
         # byebug
       !!current_user
       end
