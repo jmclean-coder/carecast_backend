@@ -30,13 +30,13 @@ class ApplicationController < ActionController::API
         end
       end
 
-      def is_logged_in
-        puts (current_user, "hello, from logged_in?")
+      def signed_in
+        puts (current_user, "hello, from is_logged_in")
       !!current_user
       end
 
       def authorized
-        render json: { message: 'Please log in' }, status: :unauthorized unless is_logged_in
+        render json: { message: 'You must sign in to view that information.' }, status: :unauthorized unless signed_in 
       end
 
       def logout
