@@ -31,7 +31,7 @@ class ApplicationController < ActionController::API
       end
 
       def signed_in
-        puts (current_user, "hello, from is_logged_in")
+        puts current_user, "hello, from is_logged_in"
       !!current_user
       end
 
